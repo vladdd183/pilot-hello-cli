@@ -24,3 +24,13 @@ def test_hello_name_bob_loud() -> None:
     )
     assert proc.stdout == "HELLO, BOB!\n"
 
+
+def test_hello_no_flags() -> None:
+    proc = subprocess.run(
+        ["hello"],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    assert proc.stdout == "Hello, World!\n"
+
