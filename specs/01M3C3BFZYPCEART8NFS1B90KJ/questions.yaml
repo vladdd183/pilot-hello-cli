@@ -1,0 +1,38 @@
+schema: wb-mega-questions/v1
+verify: true
+questions:
+  - id: q1
+    text: >
+      How should the Python hello CLI be packaged so `hello --name X` prints
+      exactly `Hello, X!`, `--help` works, pyproject.toml defines the console
+      script, and one unit test covers that greeting? Worktree commit e416e60
+      has no pyproject.toml, package, or tests. Verbatim intent requires
+      `hello [--name NAME]` and a greeting; the judge checks `Hello, X!` not a
+      free translation. What is stdout when `--name` is omitted? argparse or
+      click? Exact trailing newline? Copy
+      specs/01M3C3BFZYPCEART8NFS1B90KJ/intent.md into docs/intent.md
+      byte-for-byte (docs/intent.md is still the bootstrap stub).
+    hints:
+      - specs/01M3C3BFZYPCEART8NFS1B90KJ/intent.md
+      - specs/01M3C3BFZYPCEART8NFS1B90KJ/recall.md
+      - docs/intent.md
+      - PEP 621 console_scripts
+      - argparse --help
+    role: swarm
+  - id: q2
+    text: >
+      How must GitHub Actions be changed so pytest is green only when tests
+      pass, and how does an issue labeled `agent` produce a PR with auto-merge
+      on green CI after S7? Current .github/workflows/ci.yml installs with
+      `|| true` and succeeds with "no tests yet — ok for bootstrap" when
+      tests/ is missing. README already states label `agent` (or `/agent`) →
+      kanban card → PR on `wt/<card>` → auto-merge on green CI. Commit
+      e416e60 says "labels seed" but no label file or auto-merge workflow is
+      in the tree. Do not import SB work/tech or replicator designs.
+    hints:
+      - .github/workflows/ci.yml
+      - README.md
+      - mega-intake
+      - GitHub auto-merge
+      - pytest -q
+    role: swarm
