@@ -1,0 +1,39 @@
+schema: wb-mega-items/v1
+items:
+  - id: core
+    kind: core
+    title: Hello CLI skeleton, intent copy, strict CI
+    role: brain
+    files:
+      - pyproject.toml
+      - src/hello_cli/__init__.py
+      - src/hello_cli/cli.py
+      - docs/intent.md
+      - .github/workflows/ci.yml
+    acceptance:
+      - "`hello --name X` prints `Hello, X!` plus newline"
+      - "`hello` with no `--name` prints `Hello, World!` plus newline"
+      - "`hello --help` exits 0 and mentions `--name`"
+      - "docs/intent.md is a byte-for-byte copy of specs/01M3C3BFZYPCEART8NFS1B90KJ/intent.md"
+      - "CI is pip install -e \".[dev]\" then pytest -q with no || true and no bootstrap skip"
+    context: >-
+      Apply specs/01M3C3BFZYPCEART8NFS1B90KJ/architecture.md, delta.md, and
+      patterns/verbatim-intent.md, pyproject-console-script.md, argparse-hello-cli.md,
+      ci-pytest-strict.md literally. Package hello_cli (src layout), argparse,
+      greeting Hello, {name}!, console script hello = hello_cli.cli:main.
+      One compile pass; do not iterate tests; do not add Click, extra tests,
+      label YAML, or auto-merge workflow. Commit on wt/01M3C3BFZYPCEART8NFS1B90KJ.
+  - id: polish-tests
+    kind: polish
+    title: One unit test for hello --name Alice
+    role: polish
+    files:
+      - tests/test_cli.py
+    acceptance:
+      - "exactly one unit test"
+      - "subprocess hello --name Alice stdout is Hello, Alice! plus newline"
+      - "pytest -q green"
+    context: >-
+      Apply specs/01M3C3BFZYPCEART8NFS1B90KJ/patterns/unit-test-subprocess.md
+      literally. Create only tests/test_cli.py. Do not retouch pyproject.toml,
+      src/, docs/intent.md, or .github/workflows/ci.yml.
